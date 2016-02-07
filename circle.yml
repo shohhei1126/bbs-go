@@ -11,7 +11,7 @@ machine:
     - mkdir -p $CIRCLE_PROJECT_REPONAME
 
 dependencies:
-  orverride:
+  override:
     - make tools
     - make deps
 
