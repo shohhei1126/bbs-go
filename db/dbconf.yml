@@ -1,0 +1,7 @@
+local:
+  driver: mymysql
+  open: tcp:localhost:3306*bbs_go/root/
+
+test:
+  driver: mymysql
+  open: tcp:localhost:3306*bbs_go_test/root/

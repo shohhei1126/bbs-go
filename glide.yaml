@@ -1,0 +1,4 @@
+package: github.com/shohhei1126/bbs-go
+import:
+- package: goji.io
+- package: github.com/kelseyhightower/envconfig

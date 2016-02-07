@@ -1,0 +1,14 @@
+hash: 66c22bea4c138ee6a5f210a85093114077db9240638f5dbe80494557628f0c52
+updated: 2016-02-07T22:53:17.638999836+09:00
+imports:
+- name: github.com/kelseyhightower/envconfig
+  version: 12c18e8343f6eb5fc3a9d5c8dc353e42e6bb40b9
+- name: goji.io
+  version: 8110ccbc05240c40d43ccb004e0542b3bcbf27da
+- name: golang.org/x/crypto
+  version: 1f22c0103821b9390939b6776727195525381532
+- name: golang.org/x/net
+  version: 7f88271ea9913b72aca44fa7fc8af919eacc17ce
+- name: golang.org/x/text
+  version: 6b2a19a9a1a1b404186b838a6b9d0c15bc9cc160
+devImports: []
