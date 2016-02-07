@@ -1,0 +1,25 @@
+machine:
+  timezone: Asia/Tokyo
+  environment:
+    GOPATH: "${HOME}/.go"
+    PATH: "/usr/local/go/bin:${PATH}"
+    BBSGO_DB_TEST: "ubuntu:@tcp(127.0.0.1:3306)/bbs_go_test?parseTime=true&loc=Local"
+  post:
+    - rm -rf ".go/src/github.com/shohhei1126/bbs-go"
+    - mkdir -p ".go/src/github.com/shohhei1126"
+    - mv $CIRCLE_PROJECT_REPONAME ".go/src/github.com/shohhei1126/"
+    - mkdir -p $CIRCLE_PROJECT_REPONAME
+
+dependencies:
+  orverride:
+    - make tools
+    - make deps
+
+database:
+  override:
+    - make dbs
+    - make migrate
+
+test:
+  override:
+    - make test
