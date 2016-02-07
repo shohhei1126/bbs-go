@@ -13,5 +13,14 @@ install-glide:
 deps: install-glide
 		glide install
 
+dbs:
+		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go"
+		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go_test"
+
+migrate:
+		goose -env=test status
+		goose -env=test up
+
 test:
 		go test $(shell go list github.com/shohhei1126/bbs-go/... | grep -v vendor)
+		go vet $(shell go list github.com/shohhei1126/bbs-go/... | grep -v vendor)
