@@ -1,3 +1,6 @@
+general:
+  build_dir: ${HOME}/.go/src/github.com/shohhei1126/$CIRCLE_PROJECT_REPONAME
+
 machine:
   timezone: Asia/Tokyo
   environment:
