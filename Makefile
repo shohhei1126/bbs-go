@@ -27,3 +27,6 @@ migrate:
 test:
 		go test $(shell go list github.com/shohhei1126/bbs-go/... | grep -v vendor)
 		go vet $(shell go list github.com/shohhei1126/bbs-go/... | grep -v vendor)
+
+build:
+		go build -o interface-pattern/bbs interface-pattern/main.go
