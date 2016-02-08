@@ -1,41 +1,59 @@
 package main
 
 import (
-	"fmt"
-	"github.com/kelseyhightower/envconfig"
 	"github.com/shohhei1126/bbs-go/common/db"
 	"github.com/shohhei1126/bbs-go/interface-pattern/model"
 
 	"database/sql"
 	"github.com/Sirupsen/logrus"
 	_ "github.com/go-sql-driver/mysql"
+	"github.com/shohhei1126/bbs-go/common/conf"
+	"github.com/shohhei1126/bbs-go/common/http/response"
 	"github.com/shohhei1126/bbs-go/common/logger"
+	"github.com/shohhei1126/bbs-go/interface-pattern/dao"
+	"github.com/shohhei1126/bbs-go/interface-pattern/handler"
+	"github.com/shohhei1126/bbs-go/interface-pattern/service"
+	"goji.io"
+	"goji.io/pat"
+	"golang.org/x/net/context"
+	"net/http"
 )
 
-type appConf struct {
-	DbMaster string `envconfig:"db_master"`
-	DbSlave  string `envconfig:"db_slave"`
-	LogLevel string `envconfig:"log_level"`
-}
-
 func main() {
-	conf := parseAppConf()
+	conf := parseConf()
 	dbm := parseDb(conf.DbMaster)
 	dbs := parseDb(conf.DbSlave)
 	logger := parseLogger(conf.LogLevel)
 	dbMMap := model.Init(dbm, logger)
 	dbSMap := model.Init(dbs, logger)
-	fmt.Printf("%+v", dbMMap)
-	fmt.Printf("%+v", dbSMap)
+
+	mux := goji.NewMux()
+
+	userDao := dao.NewUser(dbMMap, dbSMap)
+	userService := service.NewUser(userDao)
+	userHandler := handler.NewUser(userService)
+
+	mux.HandleFuncC(pat.Get("/user/:id"), wrap(userHandler.Show))
+
+	http.ListenAndServe("localhost:8000", mux)
 }
 
-func parseAppConf() appConf {
-	appConf := appConf{}
-	err := envconfig.Process("bbsgo", &appConf)
+func wrap(action func(ctx context.Context, req *http.Request) response.Response) func(context.Context, http.ResponseWriter, *http.Request) {
+	return func(ctx context.Context, out http.ResponseWriter, req *http.Request) {
+		res := action(ctx, req)
+		if res == nil {
+			res = response.ServerError
+		}
+		res.WriteTo(out)
+	}
+}
+
+func parseConf() *conf.Conf {
+	conf, err := conf.Parse()
 	if err != nil {
 		panic(err)
 	}
-	return appConf
+	return conf
 }
 
 func parseDb(dbString string) *sql.DB {

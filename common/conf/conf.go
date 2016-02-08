@@ -1,0 +1,18 @@
+package conf
+
+import "github.com/kelseyhightower/envconfig"
+
+type Conf struct {
+	DbMaster string `envconfig:"db_master"`
+	DbSlave  string `envconfig:"db_slave"`
+	LogLevel string `envconfig:"log_level"`
+}
+
+func Parse() (*Conf, error) {
+	appConf := &Conf{}
+	err := envconfig.Process("bbsgo", appConf)
+	if err != nil {
+		panic(err)
+	}
+	return appConf, nil
+}

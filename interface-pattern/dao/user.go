@@ -7,28 +7,32 @@ import (
 	"gopkg.in/gorp.v1"
 )
 
-type UserDao interface {
+type User interface {
 	Create(user *user.User) error
 	Update(user *user.User) error
 	FindById(id uint32) (user.User, error)
 	FindByIds(ids []uint32) (user.UserSlice, error)
 }
 
-type UserDaoImpl struct {
+type UserImpl struct {
 	dbm *gorp.DbMap
 	dbs *gorp.DbMap
 }
 
-func (u UserDaoImpl) Create(user *user.User) error {
+func NewUser(dbm, dbs *gorp.DbMap) User {
+	return &UserImpl{dbm: dbm, dbs: dbs}
+}
+
+func (u UserImpl) Create(user *user.User) error {
 	return u.dbm.Insert(user)
 }
 
-func (u UserDaoImpl) Update(user *user.User) error {
+func (u UserImpl) Update(user *user.User) error {
 	_, err := u.dbm.Update(user)
 	return err
 }
 
-func (u UserDaoImpl) FindById(id uint32) (user.User, error) {
+func (u UserImpl) FindById(id uint32) (user.User, error) {
 	users, err := u.FindByIds([]uint32{id})
 	if err != nil {
 		return user.User{}, err
@@ -39,7 +43,7 @@ func (u UserDaoImpl) FindById(id uint32) (user.User, error) {
 	return users[0], nil
 }
 
-func (u UserDaoImpl) FindByIds(ids []uint32) (user.UserSlice, error) {
+func (u UserImpl) FindByIds(ids []uint32) (user.UserSlice, error) {
 	if len(ids) == 0 {
 		return user.UserSlice{}, nil
 	}

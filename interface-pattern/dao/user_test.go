@@ -11,7 +11,7 @@ import (
 func TestUserUpdate(t *testing.T) {
 	dbMap.TruncateTables()
 
-	userDao := UserDaoImpl{dbm: dbMap, dbs: dbMap}
+	userDao := UserImpl{dbm: dbMap, dbs: dbMap}
 	now := time.Now()
 
 	u1 := user.User{
@@ -45,7 +45,7 @@ func TestUserUpdate(t *testing.T) {
 func TestUserFindById(t *testing.T) {
 	dbMap.TruncateTables()
 
-	userDao := UserDaoImpl{dbm: dbMap, dbs: dbMap}
+	userDao := UserImpl{dbm: dbMap, dbs: dbMap}
 	now := time.Now()
 
 	u1 := user.User{
@@ -72,7 +72,7 @@ func TestUserFindById(t *testing.T) {
 func TestUserFindByIds(t *testing.T) {
 	dbMap.TruncateTables()
 
-	userDao := UserDaoImpl{dbm: dbMap, dbs: dbMap}
+	userDao := UserImpl{dbm: dbMap, dbs: dbMap}
 	now := time.Now()
 
 	u1 := user.User{

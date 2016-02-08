@@ -12,22 +12,26 @@ type User interface {
 	FindByIds(ids []uint32) (user.UserSlice, error)
 }
 
-type UserServiceImpl struct {
-	userDao dao.UserDao
+type UserImpl struct {
+	userDao dao.User
 }
 
-func (u UserServiceImpl) Create(user *user.User) error {
+func NewUser(userDao dao.User) User {
+	return &UserImpl{userDao: userDao}
+}
+
+func (u UserImpl) Create(user *user.User) error {
 	return u.userDao.Create(user)
 }
 
-func (u UserServiceImpl) Update(user *user.User) error {
+func (u UserImpl) Update(user *user.User) error {
 	return u.userDao.Update(user)
 }
 
-func (u UserServiceImpl) FindById(id uint32) (user.User, error) {
+func (u UserImpl) FindById(id uint32) (user.User, error) {
 	return u.userDao.FindById(id)
 }
 
-func (u UserServiceImpl) FindByIds(ids []uint32) (user.UserSlice, error) {
+func (u UserImpl) FindByIds(ids []uint32) (user.UserSlice, error) {
 	return u.userDao.FindByIds(ids)
 }
