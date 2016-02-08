@@ -1,8 +1,10 @@
-hash: 66c22bea4c138ee6a5f210a85093114077db9240638f5dbe80494557628f0c52
-updated: 2016-02-07T22:53:17.638999836+09:00
+hash: d444b317358b09be87cd21f9658b462e5458ccb89259a0573aa30ca0826a026d
+updated: 2016-02-08T19:47:10.142596172+09:00
 imports:
 - name: github.com/kelseyhightower/envconfig
   version: 12c18e8343f6eb5fc3a9d5c8dc353e42e6bb40b9
+- name: github.com/Sirupsen/logrus
+  version: be52937128b38f1d99787bb476c789e2af1147f1
 - name: goji.io
   version: 8110ccbc05240c40d43ccb004e0542b3bcbf27da
 - name: golang.org/x/crypto
@@ -11,4 +13,9 @@ imports:
   version: 7f88271ea9913b72aca44fa7fc8af919eacc17ce
 - name: golang.org/x/text
   version: 6b2a19a9a1a1b404186b838a6b9d0c15bc9cc160
+- name: gopkg.in/airbrake/gobrake.v2
+  version: c9d51adc624b5cc4c1bf8de730a09af4878ffe2d
+- name: gopkg.in/gemnasium/logrus-airbrake-hook.v2
+  version: 31e6fd4bd5a98d8ee7673d24bc54ec73c31810dd
+  repo: https://gopkg.in/gemnasium/logrus-airbrake-hook.v2
 devImports: []

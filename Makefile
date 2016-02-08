@@ -13,6 +13,9 @@ install-glide:
 deps: install-glide
 		glide install
 
+deps-update: install-glide
+		glide update
+
 dbs:
 		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go"
 		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go_test"
