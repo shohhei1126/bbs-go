@@ -3,3 +3,6 @@ import:
 - package: goji.io
 - package: github.com/kelseyhightower/envconfig
 - package: github.com/Sirupsen/logrus
+- package: gopkg.in/gorp.v1
+- package: github.com/go-sql-driver/mysql
+- package: github.com/lann/squirrel

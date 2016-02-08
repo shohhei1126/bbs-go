@@ -1,8 +1,16 @@
-hash: d444b317358b09be87cd21f9658b462e5458ccb89259a0573aa30ca0826a026d
-updated: 2016-02-08T19:47:10.142596172+09:00
+hash: 3d84e13f26b4019f214bb7874c831ef185dcce5852ed46de02fef0244f8e50e6
+updated: 2016-02-08T19:53:59.046505299+09:00
 imports:
+- name: github.com/go-sql-driver/mysql
+  version: 267b128680c46286b9ca13475c3cca5de8f79bd7
 - name: github.com/kelseyhightower/envconfig
   version: 12c18e8343f6eb5fc3a9d5c8dc353e42e6bb40b9
+- name: github.com/lann/builder
+  version: f22ce00fd9394014049dad11c244859432bd6820
+- name: github.com/lann/ps
+  version: 62de8c46ede02a7675c4c79c84883eb164cb71e3
+- name: github.com/lann/squirrel
+  version: 1f8a6e983e7a153765cf26564d87cfb966da67c2
 - name: github.com/Sirupsen/logrus
   version: be52937128b38f1d99787bb476c789e2af1147f1
 - name: goji.io
@@ -17,5 +25,6 @@ imports:
   version: c9d51adc624b5cc4c1bf8de730a09af4878ffe2d
 - name: gopkg.in/gemnasium/logrus-airbrake-hook.v2
   version: 31e6fd4bd5a98d8ee7673d24bc54ec73c31810dd
-  repo: https://gopkg.in/gemnasium/logrus-airbrake-hook.v2
+- name: gopkg.in/gorp.v1
+  version: c87af80f3cc5036b55b83d77171e156791085e2e
 devImports: []
