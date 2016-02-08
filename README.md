@@ -1,5 +1,5 @@
 # bbs-go
 
 This is a Golang web application to try some variation coding style.
-There is probably not de fact standard such as Spring(Java), Rails(Ruby) and so on.
-So, This project try to show some coding style and comparing these good/bad.
+
+[![Circle CI](https://circleci.com/gh/shohhei1126/bbs-go.svg?style=svg)](https://circleci.com/gh/shohhei1126/bbs-go)
