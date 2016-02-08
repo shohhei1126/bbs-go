@@ -6,6 +6,7 @@ machine:
   environment:
     GOPATH: "${HOME}/.go"
     PATH: "/usr/local/go/bin:${GOPATH}/bin:${PATH}"
+    GO15VENDOREXPERIMENT: 1
     BBSGO_DB_TEST: "ubuntu:@tcp(127.0.0.1:3306)/bbs_go_test?parseTime=true&loc=Local"
   post:
     - rm -rf ".go/src/github.com/shohhei1126/bbs-go"
