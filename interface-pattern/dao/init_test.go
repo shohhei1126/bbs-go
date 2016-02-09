@@ -3,7 +3,7 @@ package dao
 import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/shohhei1126/bbs-go/common/db"
-	"github.com/shohhei1126/bbs-go/common/logger"
+	"github.com/shohhei1126/bbs-go/common/log"
 	"github.com/shohhei1126/bbs-go/interface-pattern/model"
 	"gopkg.in/gorp.v1"
 	"os"
@@ -16,7 +16,7 @@ func TestMain(m *testing.M) {
 	// db
 	dbString := os.Getenv("BBSGO_DB_TEST")
 	if dbString == "" {
-		panic("BBSGO_DB_TEST is required")
+		dbString = "root:@tcp(localhost:3306)/bbs_go?parseTime=true&loc=Local"
 	}
 	db, err := db.NewMySqlDb(dbString)
 	if err != nil {
@@ -28,12 +28,12 @@ func TestMain(m *testing.M) {
 	if logLevel == "" {
 		logLevel = "debug"
 	}
-	logger, err := logger.NewLogger(logger.Conf{LogLevel: logLevel})
+	err = log.Init(log.Conf{LogLevel: logLevel})
 	if err != nil {
 		panic(err)
 	}
 
-	dbMap = model.Init(db, logger)
+	dbMap = model.Init(db, log.Logger)
 
 	os.Exit(m.Run())
 }

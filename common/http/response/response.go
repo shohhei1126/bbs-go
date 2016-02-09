@@ -3,6 +3,7 @@ package response
 import (
 	"encoding/json"
 	"net/http"
+"github.com/shohhei1126/bbs-go/common/log"
 )
 
 var (
@@ -59,6 +60,7 @@ func Respond(status int, body interface{}) *NormalResponse {
 	default:
 		if body != nil {
 			if b, err = json.Marshal(body); err != nil {
+				log.Logger.Errorf("Respose body json marshal failed.")
 				return &NormalResponse{
 					status: http.StatusInternalServerError,
 				}

@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"strconv"
 	"database/sql"
+	"github.com/shohhei1126/bbs-go/common/log"
 )
 
 type User struct {
@@ -27,6 +28,7 @@ func (u User) Show(ctx context.Context, r *http.Request) response.Response {
 	if err == sql.ErrNoRows {
 		return response.NotFound
 	} else if err != nil {
+		log.Logger.Error(err)
 		return response.ServerError
 	}
 	return response.Json(http.StatusOK, user)

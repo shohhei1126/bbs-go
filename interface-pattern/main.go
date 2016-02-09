@@ -5,11 +5,10 @@ import (
 	"github.com/shohhei1126/bbs-go/interface-pattern/model"
 
 	"database/sql"
-	"github.com/Sirupsen/logrus"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/shohhei1126/bbs-go/common/conf"
 	"github.com/shohhei1126/bbs-go/common/http/response"
-	"github.com/shohhei1126/bbs-go/common/logger"
+	"github.com/shohhei1126/bbs-go/common/log"
 	"github.com/shohhei1126/bbs-go/interface-pattern/dao"
 	"github.com/shohhei1126/bbs-go/interface-pattern/handler"
 	"github.com/shohhei1126/bbs-go/interface-pattern/service"
@@ -21,21 +20,22 @@ import (
 
 func main() {
 	conf := parseConf()
+	parseLogger(conf.LogFile, conf.LogLevel)
 	dbm := parseDb(conf.DbMaster)
 	dbs := parseDb(conf.DbSlave)
-	logger := parseLogger(conf.LogLevel)
-	dbMMap := model.Init(dbm, logger)
-	dbSMap := model.Init(dbs, logger)
+	dbMMap := model.Init(dbm, log.Logger)
+	dbSMap := model.Init(dbs, log.Logger)
 
 	mux := goji.NewMux()
-
 	userDao := dao.NewUser(dbMMap, dbSMap)
 	userService := service.NewUser(userDao)
 	userHandler := handler.NewUser(userService)
 
-	mux.HandleFuncC(pat.Get("/user/:id"), wrap(userHandler.Show))
+	mux.HandleFuncC(pat.Get("/v1/users/:id"), wrap(userHandler.Show))
+	mux.Handle(pat.Get("/*"), http.FileServer(http.Dir(conf.Assets)))
 
-	http.ListenAndServe("localhost:8000", mux)
+	log.Logger.Info("starting server...")
+	http.ListenAndServe("localhost:8080", mux)
 }
 
 func wrap(action func(ctx context.Context, req *http.Request) response.Response) func(context.Context, http.ResponseWriter, *http.Request) {
@@ -64,10 +64,9 @@ func parseDb(dbString string) *sql.DB {
 	return db
 }
 
-func parseLogger(logLevel string) *logrus.Logger {
-	l, err := logger.NewLogger(logger.Conf{LogLevel: logLevel})
+func parseLogger(logfile, logLevel string) {
+	err := log.Init(log.Conf{LogFile: logfile, LogLevel: logLevel})
 	if err != nil {
 		panic(err)
 	}
-	return l
 }
