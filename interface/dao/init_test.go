@@ -4,13 +4,18 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/shohhei1126/bbs-go/common/db"
 	"github.com/shohhei1126/bbs-go/common/log"
-	"github.com/shohhei1126/bbs-go/interface-pattern/model"
+	"github.com/shohhei1126/bbs-go/interface/model"
 	"gopkg.in/gorp.v1"
 	"os"
 	"testing"
 )
 
-var dbMap *gorp.DbMap
+var (
+	dbMap      *gorp.DbMap
+	userDao    User
+	threadDao  Thread
+	commentDao Comment
+)
 
 func TestMain(m *testing.M) {
 	// db
@@ -34,6 +39,9 @@ func TestMain(m *testing.M) {
 	}
 
 	dbMap = model.Init(db, log.Logger)
+	userDao = UserImpl{dbm: dbMap, dbs: dbMap}
+	threadDao = ThreadImpl{dbm: dbMap, dbs: dbMap}
+	commentDao = CommentImpl{dbm: dbMap, dbs: dbMap}
 
 	os.Exit(m.Run())
 }

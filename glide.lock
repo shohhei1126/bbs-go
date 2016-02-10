@@ -1,6 +1,10 @@
-hash: 3d84e13f26b4019f214bb7874c831ef185dcce5852ed46de02fef0244f8e50e6
-updated: 2016-02-08T19:53:59.046505299+09:00
+hash: 5172f48c398032dcf122d99a1af2e84ed61c7f6c571e6155f8f896c600e3eb7b
+updated: 2016-02-10T17:31:10.013077306+09:00
 imports:
+- name: github.com/davecgh/go-spew
+  version: 2df174808ee097f90d259e432cc04442cf60be21
+  subpackages:
+  - spew
 - name: github.com/go-sql-driver/mysql
   version: 267b128680c46286b9ca13475c3cca5de8f79bd7
 - name: github.com/kelseyhightower/envconfig
@@ -11,8 +15,16 @@ imports:
   version: 62de8c46ede02a7675c4c79c84883eb164cb71e3
 - name: github.com/lann/squirrel
   version: 1f8a6e983e7a153765cf26564d87cfb966da67c2
+- name: github.com/pmezard/go-difflib
+  version: d8ed2627bdf02c080bf22230dbb337003b7aba2d
+  subpackages:
+  - difflib
 - name: github.com/Sirupsen/logrus
   version: be52937128b38f1d99787bb476c789e2af1147f1
+- name: github.com/stretchr/objx
+  version: cbeaeb16a013161a98496fad62933b1d21786672
+- name: github.com/stretchr/testify
+  version: 9f9027faeb0dad515336ed2f28317f9f8f527ab4
 - name: goji.io
   version: 8110ccbc05240c40d43ccb004e0542b3bcbf27da
 - name: golang.org/x/crypto

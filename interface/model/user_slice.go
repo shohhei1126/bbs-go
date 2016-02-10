@@ -2,7 +2,7 @@
 // TypeWriter: slice
 // Directive: +gen on User
 
-package user
+package model
 
 // UserSlice is a slice of type User. Use it where you would use []User.
 type UserSlice []User

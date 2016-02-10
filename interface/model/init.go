@@ -3,14 +3,15 @@ package model
 import (
 	"database/sql"
 	"github.com/Sirupsen/logrus"
-	"github.com/shohhei1126/bbs-go/interface-pattern/model/user"
 	"gopkg.in/gorp.v1"
 )
 
 func Init(db *sql.DB, logger *logrus.Logger) *gorp.DbMap {
 	dbMap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{}}
 	dbMap.TraceOn("", internalLogger{logurs: logger})
-	dbMap.AddTableWithName(user.User{}, "users").SetKeys(true, "Id")
+	dbMap.AddTableWithName(User{}, "users").SetKeys(true, "Id")
+	dbMap.AddTableWithName(Thread{}, "threads").SetKeys(true, "Id")
+	dbMap.AddTableWithName(Comment{}, "comments").SetKeys(true, "Id")
 	return dbMap
 }
 

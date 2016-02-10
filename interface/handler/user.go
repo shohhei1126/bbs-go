@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/shohhei1126/bbs-go/common/http/response"
-	"github.com/shohhei1126/bbs-go/interface-pattern/service"
+	"github.com/shohhei1126/bbs-go/interface/service"
 	"goji.io/pat"
 	"golang.org/x/net/context"
 	"net/http"

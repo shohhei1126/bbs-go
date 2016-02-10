@@ -7,16 +7,6 @@
   },
   "host": "localhost:8080",
   "basePath": "/v1",
-  "tags": [
-    {
-      "name": "threads",
-      "description": "threads"
-    },
-    {
-      "name": "users",
-      "description": "users"
-    }
-  ],
   "schemes": [
     "http"
   ],
@@ -171,7 +161,11 @@
         "status": {
           "type": "string"
         },
-        "createAt": {
+        "createdAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
           "type": "string",
           "format": "date-time"
         }
