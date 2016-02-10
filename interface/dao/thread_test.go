@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/shohhei1126/bbs-go/common/time"
+	"github.com/shohhei1126/bbs-go/common/bbstime"
 	"github.com/shohhei1126/bbs-go/interface/model"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -9,7 +9,7 @@ import (
 
 func TestThreadSaveUpdate(t *testing.T) {
 	dbMap.TruncateTables()
-	now := time.Now()
+	now := bbstime.Now()
 
 	thread := model.Thread{
 		UserId:    1,

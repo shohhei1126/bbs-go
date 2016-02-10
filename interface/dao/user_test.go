@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/shohhei1126/bbs-go/common/time"
+	"github.com/shohhei1126/bbs-go/common/bbstime"
 	"github.com/shohhei1126/bbs-go/interface/model"
 
 	"github.com/stretchr/testify/assert"
@@ -10,7 +10,7 @@ import (
 
 func TestUserSaveUpdate(t *testing.T) {
 	dbMap.TruncateTables()
-	now := time.Now()
+	now := bbstime.Now()
 
 	user := model.User{
 		Username:    "username1",
@@ -39,7 +39,7 @@ func TestUserSaveUpdate(t *testing.T) {
 
 func TestUserFindById(t *testing.T) {
 	dbMap.TruncateTables()
-	now := time.Now()
+	now := bbstime.Now()
 
 	u1 := model.User{
 		Username:    "username1",
@@ -62,7 +62,7 @@ func TestUserFindById(t *testing.T) {
 
 func TestUserFindByIds(t *testing.T) {
 	dbMap.TruncateTables()
-	now := time.Now()
+	now := bbstime.Now()
 
 	u1 := model.User{
 		Username:    "username1",

@@ -1,7 +1,7 @@
 package dao
 
 type Paging struct {
-	Limit   uint
-	Offset  uint
+	Limit   uint64
+	Offset  uint64
 	OrderBy string
 }

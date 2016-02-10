@@ -10,6 +10,7 @@ type Comment interface {
 	Create(thread *model.Comment) error
 	Delete(user *model.Comment) error
 	FindById(id uint32) (*model.Comment, error)
+	FindSliceByThreadId(threadId uint32, paging Paging) (model.CommentSlice, error)
 }
 
 type CommentImpl struct {
@@ -39,4 +40,24 @@ func (c CommentImpl) FindById(id uint32) (*model.Comment, error) {
 		return nil, err
 	}
 	return &comment, nil
+}
+
+func (c CommentImpl) FindSliceByThreadId(threadId uint32, paging Paging) (model.CommentSlice, error) {
+	builder := squirrel.Select("*").
+		From("comments").
+		Where("thread_id = ?", threadId).
+		Limit(paging.Limit).
+		Offset(paging.Offset)
+	if paging.OrderBy != "" {
+		builder = builder.OrderBy(paging.OrderBy)
+	}
+	sql, args, err := builder.ToSql()
+	if err != nil {
+		return nil, err
+	}
+	var comments model.CommentSlice
+	if _, err := c.dbs.Select(&comments, sql, args...); err != nil {
+		return nil, err
+	}
+	return comments, nil
 }
