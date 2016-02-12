@@ -20,6 +20,8 @@ type ThreadImpl struct {
 	dbs *gorp.DbMap
 }
 
+
+
 func (t ThreadImpl) Create(thread *model.Thread) error {
 	return t.dbm.Insert(thread)
 }
