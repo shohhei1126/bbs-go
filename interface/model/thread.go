@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-// +gen slice:"Select[uint32]"
+// +gen slice:"Select[uint32],SortBy"
 type Thread struct {
 	Id           uint32    `json:"id" db:"id"`
 	UserId       uint32    `json:"userId" db:"user_id"`

@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-// +gen slice:"Select[uint32]"
+// +gen slice:"Select[uint32],GroupBy[uint32]"
 type User struct {
 	Id          uint32     `json:"id" db:"id"`
 	Username    string     `json:"username" db:"username"`

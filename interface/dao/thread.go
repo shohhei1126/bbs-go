@@ -11,6 +11,7 @@ type Thread interface {
 	Create(thread *model.Thread) error
 	Update(user *model.Thread) error
 	FindById(id uint32) (*model.Thread, error)
+	FindList(paging Paging) (model.ThreadSlice, error)
 	Increment(threadId uint32, count int) error
 }
 
@@ -41,6 +42,24 @@ func (t ThreadImpl) FindById(id uint32) (*model.Thread, error) {
 		return nil, err
 	}
 	return &thread, nil
+}
+
+func (t ThreadImpl) FindList(paging Paging) (model.ThreadSlice, error) {
+	sql, args, err := squirrel.
+		Select("*").
+		From("threads").
+		OrderBy(paging.OrderBy).
+		Limit(paging.Limit).
+		Offset(paging.Offset).
+		ToSql()
+	if err != nil {
+		return nil, err
+	}
+	var threads model.ThreadSlice
+	if _, err := t.dbs.Select(&threads, sql, args...); err != nil {
+		return nil, err
+	}
+	return threads, nil
 }
 
 func (t ThreadImpl) Increment(threadId uint32, count int) error {

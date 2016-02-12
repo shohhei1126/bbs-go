@@ -14,3 +14,13 @@ func (rcv UserSlice) SelectUint32(fn func(User) uint32) (result []uint32) {
 	}
 	return
 }
+
+// GroupByUint32 groups elements into a map keyed by uint32. See: http://clipperhouse.github.io/gen/#GroupBy
+func (rcv UserSlice) GroupByUint32(fn func(User) uint32) map[uint32]UserSlice {
+	result := make(map[uint32]UserSlice)
+	for _, v := range rcv {
+		key := fn(v)
+		result[key] = append(result[key], v)
+	}
+	return result
+}
