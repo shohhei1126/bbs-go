@@ -2,8 +2,8 @@ package handler
 
 import (
 	"github.com/shohhei1126/bbs-go/common/http/response"
-	"github.com/shohhei1126/bbs-go/interface/dao"
-	"github.com/shohhei1126/bbs-go/interface/service"
+	"github.com/shohhei1126/bbs-go/dao"
+	"github.com/shohhei1126/bbs-go/service"
 	"golang.org/x/net/context"
 	"net/http"
 	"strconv"

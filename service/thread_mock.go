@@ -5,8 +5,8 @@ package service
 
 import (
 	gomock "github.com/golang/mock/gomock"
-	dao "github.com/shohhei1126/bbs-go/interface/dao"
-	model "github.com/shohhei1126/bbs-go/interface/model"
+	dao "github.com/shohhei1126/bbs-go/dao"
+	model "github.com/shohhei1126/bbs-go/model"
 )
 
 // Mock of Thread interface

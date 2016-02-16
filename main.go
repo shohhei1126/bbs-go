@@ -2,16 +2,16 @@ package main
 
 import (
 	"github.com/shohhei1126/bbs-go/common/db"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/model"
 
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/shohhei1126/bbs-go/common/conf"
 	"github.com/shohhei1126/bbs-go/common/http/response"
 	"github.com/shohhei1126/bbs-go/common/log"
-	"github.com/shohhei1126/bbs-go/interface/dao"
-	"github.com/shohhei1126/bbs-go/interface/handler"
-	"github.com/shohhei1126/bbs-go/interface/service"
+	"github.com/shohhei1126/bbs-go/dao"
+	"github.com/shohhei1126/bbs-go/handler"
+	"github.com/shohhei1126/bbs-go/service"
 	"goji.io"
 	"goji.io/pat"
 	"golang.org/x/net/context"

@@ -2,8 +2,8 @@ package service
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/shohhei1126/bbs-go/interface/dao"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/dao"
+	"github.com/shohhei1126/bbs-go/model"
 	"testing"
 	"github.com/stretchr/testify/assert"
 )

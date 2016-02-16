@@ -4,7 +4,7 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/shohhei1126/bbs-go/common/db"
 	"github.com/shohhei1126/bbs-go/common/log"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/model"
 	"gopkg.in/gorp.v1"
 	"os"
 	"testing"

@@ -1,8 +1,8 @@
 package service
 
 import (
-	"github.com/shohhei1126/bbs-go/interface/dao"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/dao"
+	"github.com/shohhei1126/bbs-go/model"
 )
 
 type Thread interface {

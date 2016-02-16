@@ -3,7 +3,7 @@ package dao
 import (
 	"database/sql"
 	"github.com/Masterminds/squirrel"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/model"
 	"gopkg.in/gorp.v1"
 )
 

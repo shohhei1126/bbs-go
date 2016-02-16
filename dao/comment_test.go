@@ -4,7 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"github.com/shohhei1126/bbs-go/common/bbstime"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/model"
 	"github.com/stretchr/testify/assert"
 	"testing"
 	"time"

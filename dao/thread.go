@@ -2,7 +2,7 @@ package dao
 
 import (
 	"github.com/Masterminds/squirrel"
-	"github.com/shohhei1126/bbs-go/interface/model"
+	"github.com/shohhei1126/bbs-go/model"
 	"gopkg.in/gorp.v1"
 	"math"
 )
@@ -19,8 +19,6 @@ type ThreadImpl struct {
 	dbm *gorp.DbMap
 	dbs *gorp.DbMap
 }
-
-
 
 func (t ThreadImpl) Create(thread *model.Thread) error {
 	return t.dbm.Insert(thread)
