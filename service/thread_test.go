@@ -29,7 +29,7 @@ func TestThreadFindThreads(t *testing.T) {
 	userDaoMoc := dao.NewMockUser(ctl)
 	userDaoMoc.EXPECT().FindByIds([]uint32{12, 13, 14}).Return(users, nil)
 
-	threadService := NewThread(userDaoMoc, threadDaoMoc, nil)
+	threadService := NewThread(userDaoMoc, threadDaoMoc)
 
 	actualThreads, err := threadService.FindThreads(paging)
 	if err != nil {

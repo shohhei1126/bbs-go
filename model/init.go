@@ -11,7 +11,6 @@ func Init(db *sql.DB, logger *logrus.Logger) *gorp.DbMap {
 	dbMap.TraceOn("", internalLogger{logurs: logger})
 	dbMap.AddTableWithName(User{}, "users").SetKeys(true, "Id")
 	dbMap.AddTableWithName(Thread{}, "threads").SetKeys(true, "Id")
-	dbMap.AddTableWithName(Comment{}, "comments").SetKeys(true, "Id")
 	return dbMap
 }
 

@@ -9,7 +9,6 @@ import (
 
 type User interface {
 	Create(user *model.User) error
-	Update(user *model.User) error
 	FindById(id uint32) (*model.User, error)
 	FindByIds(ids []uint32) (model.UserSlice, error)
 }
@@ -25,11 +24,6 @@ func NewUser(dbm, dbs *gorp.DbMap) User {
 
 func (u UserImpl) Create(user *model.User) error {
 	return u.dbm.Insert(user)
-}
-
-func (u UserImpl) Update(user *model.User) error {
-	_, err := u.dbm.Update(user)
-	return err
 }
 
 func (u UserImpl) FindById(id uint32) (*model.User, error) {

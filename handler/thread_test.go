@@ -2,7 +2,7 @@ package handler
 
 import (
 	"github.com/golang/mock/gomock"
-	"github.com/shohhei1126/bbs-go/common/http/response"
+	"github.com/shohhei1126/bbs-go/http/response"
 	"github.com/shohhei1126/bbs-go/service"
 	"github.com/stretchr/testify/assert"
 	"golang.org/x/net/context"

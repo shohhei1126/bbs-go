@@ -12,11 +12,10 @@ type Thread interface {
 type ThreadImpl struct {
 	userDao    dao.User
 	threadDao  dao.Thread
-	commentDao dao.Comment
 }
 
-func NewThread(userDao dao.User, thread dao.Thread, commentDao dao.Comment) Thread {
-	return ThreadImpl{userDao: userDao, threadDao: thread, commentDao: commentDao}
+func NewThread(userDao dao.User, thread dao.Thread) Thread {
+	return ThreadImpl{userDao: userDao, threadDao: thread,}
 }
 
 func (t ThreadImpl) FindThreads(paging dao.Paging) (model.ThreadSlice, error) {

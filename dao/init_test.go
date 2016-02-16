@@ -2,8 +2,8 @@ package dao
 
 import (
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/shohhei1126/bbs-go/common/db"
-	"github.com/shohhei1126/bbs-go/common/log"
+	bbsmysql "github.com/shohhei1126/bbs-go/mysql"
+	"github.com/shohhei1126/bbs-go/log"
 	"github.com/shohhei1126/bbs-go/model"
 	"gopkg.in/gorp.v1"
 	"os"
@@ -14,16 +14,15 @@ var (
 	dbMap      *gorp.DbMap
 	userDao    User
 	threadDao  Thread
-	commentDao Comment
 )
 
 func TestMain(m *testing.M) {
 	// db
 	dbString := os.Getenv("BBSGO_DB_TEST")
 	if dbString == "" {
-		dbString = "root:@tcp(localhost:3306)/bbs_go?parseTime=true&loc=Local"
+		dbString = "root:@tcp(localhost:3306)/bbs_go_test?parseTime=true&loc=Local"
 	}
-	db, err := db.NewMySqlDb(dbString)
+	db, err := bbsmysql.NewMySqlDb(dbString)
 	if err != nil {
 		panic(err)
 	}
@@ -41,7 +40,6 @@ func TestMain(m *testing.M) {
 	dbMap = model.Init(db, log.Logger)
 	userDao = UserImpl{dbm: dbMap, dbs: dbMap}
 	threadDao = ThreadImpl{dbm: dbMap, dbs: dbMap}
-	commentDao = CommentImpl{dbm: dbMap, dbs: dbMap}
 
 	os.Exit(m.Run())
 }

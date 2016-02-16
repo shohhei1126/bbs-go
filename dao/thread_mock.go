@@ -39,27 +39,6 @@ func (_mr *_MockThreadRecorder) Create(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "Create", arg0)
 }
 
-func (_m *MockThread) Update(user *model.Thread) error {
-	ret := _m.ctrl.Call(_m, "Update", user)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-func (_mr *_MockThreadRecorder) Update(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Update", arg0)
-}
-
-func (_m *MockThread) FindById(id uint32) (*model.Thread, error) {
-	ret := _m.ctrl.Call(_m, "FindById", id)
-	ret0, _ := ret[0].(*model.Thread)
-	ret1, _ := ret[1].(error)
-	return ret0, ret1
-}
-
-func (_mr *_MockThreadRecorder) FindById(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "FindById", arg0)
-}
-
 func (_m *MockThread) FindList(paging Paging) (model.ThreadSlice, error) {
 	ret := _m.ctrl.Call(_m, "FindList", paging)
 	ret0, _ := ret[0].(model.ThreadSlice)
@@ -69,14 +48,4 @@ func (_m *MockThread) FindList(paging Paging) (model.ThreadSlice, error) {
 
 func (_mr *_MockThreadRecorder) FindList(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "FindList", arg0)
-}
-
-func (_m *MockThread) Increment(threadId uint32, count int) error {
-	ret := _m.ctrl.Call(_m, "Increment", threadId, count)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-func (_mr *_MockThreadRecorder) Increment(arg0, arg1 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Increment", arg0, arg1)
 }

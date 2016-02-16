@@ -1,8 +1,9 @@
 package handler
 
 import (
-	"github.com/shohhei1126/bbs-go/common/http/response"
 	"github.com/shohhei1126/bbs-go/dao"
+	"github.com/shohhei1126/bbs-go/http/response"
+	"github.com/shohhei1126/bbs-go/log"
 	"github.com/shohhei1126/bbs-go/service"
 	"golang.org/x/net/context"
 	"net/http"
@@ -30,6 +31,7 @@ func (t Thread) List(ctx context.Context, r *http.Request) response.Response {
 	paging := dao.Paging{Limit: uint64(limit), Offset: uint64(offset), OrderBy: "updated_at"}
 	threads, err := t.threadService.FindThreads(paging)
 	if err != nil {
+		log.Logger.Error(err)
 		return response.ServerError
 	}
 

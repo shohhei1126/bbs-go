@@ -2,8 +2,8 @@ package response
 
 import (
 	"encoding/json"
+	"github.com/shohhei1126/bbs-go/log"
 	"net/http"
-"github.com/shohhei1126/bbs-go/common/log"
 )
 
 var (

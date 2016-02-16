@@ -17,24 +17,14 @@ CREATE TABLE `threads` (
   `user_id`       INT(10) UNSIGNED NOT NULL,
   `title`         TEXT             NOT NULL,
   `body`          TEXT             NOT NULL,
-  `comment_count` INT(10) UNSIGNED NOT NULL,
   `created_at`    DATETIME         NOT NULL,
   `updated_at`    DATETIME         NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE `comments` (
-  `id`         INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `user_id`    INT(10) UNSIGNED NOT NULL,
-  `thread_id`  INT(10) UNSIGNED NOT NULL,
-  `body`       TEXT             NOT NULL,
-  `created_at` DATETIME         NOT NULL,
-  `updated_at` DATETIME         NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
 DROP TABLE `users`;
 DROP TABLE `threads`;
-DROP TABLE `comments`;

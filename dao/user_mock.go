@@ -39,16 +39,6 @@ func (_mr *_MockUserRecorder) Create(arg0 interface{}) *gomock.Call {
 	return _mr.mock.ctrl.RecordCall(_mr.mock, "Create", arg0)
 }
 
-func (_m *MockUser) Update(user *model.User) error {
-	ret := _m.ctrl.Call(_m, "Update", user)
-	ret0, _ := ret[0].(error)
-	return ret0
-}
-
-func (_mr *_MockUserRecorder) Update(arg0 interface{}) *gomock.Call {
-	return _mr.mock.ctrl.RecordCall(_mr.mock, "Update", arg0)
-}
-
 func (_m *MockUser) FindById(id uint32) (*model.User, error) {
 	ret := _m.ctrl.Call(_m, "FindById", id)
 	ret0, _ := ret[0].(*model.User)

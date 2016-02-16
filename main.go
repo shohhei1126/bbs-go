@@ -1,16 +1,16 @@
 package main
 
 import (
-	"github.com/shohhei1126/bbs-go/common/db"
 	"github.com/shohhei1126/bbs-go/model"
+	bbsmysql "github.com/shohhei1126/bbs-go/mysql"
 
 	"database/sql"
 	_ "github.com/go-sql-driver/mysql"
-	"github.com/shohhei1126/bbs-go/common/conf"
-	"github.com/shohhei1126/bbs-go/common/http/response"
-	"github.com/shohhei1126/bbs-go/common/log"
+	"github.com/shohhei1126/bbs-go/conf"
 	"github.com/shohhei1126/bbs-go/dao"
 	"github.com/shohhei1126/bbs-go/handler"
+	"github.com/shohhei1126/bbs-go/http/response"
+	"github.com/shohhei1126/bbs-go/log"
 	"github.com/shohhei1126/bbs-go/service"
 	"goji.io"
 	"goji.io/pat"
@@ -28,12 +28,10 @@ func main() {
 
 	mux := goji.NewMux()
 	userDao := dao.NewUser(dbMMap, dbSMap)
-	userService := service.NewUser(userDao)
-	userHandler := handler.NewUser(userService)
-
-	mux.HandleFuncC(pat.Get("/v1/users/:id"), wrap(userHandler.Show))
-	mux.Handle(pat.Get("/*"), http.FileServer(http.Dir(conf.Assets)))
-
+	threadDao := dao.NewThread(dbMMap, dbSMap)
+	threadService := service.NewThread(userDao, threadDao)
+	threadHandler := handler.NewThread(threadService)
+	mux.HandleFuncC(pat.Get("/v1/threads"), wrap(threadHandler.List))
 	log.Logger.Info("starting server...")
 	http.ListenAndServe("localhost:8080", mux)
 }
@@ -57,7 +55,7 @@ func parseConf() *conf.Conf {
 }
 
 func parseDb(dbString string) *sql.DB {
-	db, err := db.NewMySqlDb(dbString)
+	db, err := bbsmysql.NewMySqlDb(dbString)
 	if err != nil {
 		panic(err)
 	}

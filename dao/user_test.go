@@ -1,7 +1,7 @@
 package dao
 
 import (
-	"github.com/shohhei1126/bbs-go/common/bbstime"
+	"github.com/shohhei1126/bbs-go/bbstime"
 	"github.com/shohhei1126/bbs-go/model"
 
 	"github.com/stretchr/testify/assert"
@@ -21,12 +21,6 @@ func TestUserSaveUpdate(t *testing.T) {
 		UpdatedAt:   now,
 	}
 	if err := userDao.Create(&user); err != nil {
-		t.Fatal(err)
-	}
-
-	user.DisplayName = "displayname1_updated"
-	user.UpdatedAt = now
-	if err := userDao.Update(&user); err != nil {
 		t.Fatal(err)
 	}
 
