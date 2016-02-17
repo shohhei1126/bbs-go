@@ -21,7 +21,7 @@ dependencies:
 
 database:
   override:
-    - make db
+    - make dbs
     - make migrate
 
 test:

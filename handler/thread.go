@@ -28,7 +28,7 @@ func (t Thread) List(ctx context.Context, r *http.Request) response.Response {
 		return response.BadRequest
 	}
 
-	paging := dao.Paging{Limit: uint64(limit), Offset: uint64(offset), OrderBy: "updated_at"}
+	paging := dao.Paging{Limit: uint64(limit), Offset: uint64(offset), OrderBy: "updated_at desc"}
 	threads, err := t.threadService.FindThreads(paging)
 	if err != nil {
 		log.Logger.Error(err)
