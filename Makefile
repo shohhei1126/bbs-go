@@ -2,7 +2,6 @@ tools:install-go install-glide
 		go get github.com/golang/mock/gomock
 		go get github.com/golang/mock/mockgen
 		go get github.com/clipperhouse/gen
-		go get bitbucket.org/liamstask/goose/cmd/goose
 
 install-go:
 		sh sh/install_go.sh 1.5.3
@@ -21,8 +20,9 @@ dbs:
 		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go_test"
 
 migrate:
-		goose -env=test status
+		go get bitbucket.org/liamstask/goose/cmd/goose
 		goose -env=test up
+		goose -env=local up
 
 test:
 		go test $(shell go list ./... | grep -v vendor)
