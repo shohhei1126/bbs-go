@@ -21,7 +21,7 @@ dependencies:
 
 database:
   override:
-    - make dbs
+    - make dbs-cli
     - make migrate
 
 test:

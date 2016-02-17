@@ -19,6 +19,10 @@ dbs:
 		mysql -uroot -h 127.0.0.1 -p -e "CREATE DATABASE IF NOT EXISTS bbs_go"
 		mysql -uroot -h 127.0.0.1 -p -e "CREATE DATABASE IF NOT EXISTS bbs_go_test"
 
+dbs-ci:
+		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go"
+		mysql -uroot -h 127.0.0.1 -e "CREATE DATABASE IF NOT EXISTS bbs_go_test"
+
 migrate:
 		go get bitbucket.org/liamstask/goose/cmd/goose
 		goose -env=test up
